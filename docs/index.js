@@ -12,12 +12,12 @@ async function requestPermission() {
     ) {
       await DeviceOrientationEvent.requestPermission()
     }
-    resolve()
   })
   init_modal.open()
 }
 async function main() {
   await requestPermission()
+  console.log('test')
 
   // alias
   const [w, h] = [window.innerWidth, window.innerHeight]
