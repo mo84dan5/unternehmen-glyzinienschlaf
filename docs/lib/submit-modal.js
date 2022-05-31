@@ -1,15 +1,10 @@
-export default class Modal {
+export default class SubmitModal {
   constructor(modalID) {
     this.modal = document.getElementById(modalID)
     this.closeButton = this.modal.getElementsByClassName('modalClose')[0]
-    this.inputField = this.modal.getElementsByClassName('input')[0]
     this.funcButton = this.modal.getElementsByClassName('button')[0]
-    this.correctText = '日本語'
-    this.correctFunc = () => {
+    this.func = () => {
       console.log('correct')
-    }
-    this.incorrectFunc = () => {
-      console.log('incorrect')
     }
     this.init()
   }
@@ -26,17 +21,11 @@ export default class Modal {
   close() {
     this.modal.style.display = 'none'
   }
-  setButtonFunc(correctText, correctFunc, incorrectFunc) {
-    this.correctText = correctText
-    this.correctFunc = correctFunc
-    this.incorrectFunc = incorrectFunc
+  setButtonFunc(func) {
+    this.func = func
   }
   buttonFunc() {
-    if (this.inputField.value === this.correctText) {
-      this.modal.style.display = 'none'
-      this.correctFunc()
-    } else {
-      this.incorrectFunc()
-    }
+    this.modal.style.display = 'none'
+    this.func()
   }
 }
