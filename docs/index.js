@@ -11,8 +11,8 @@ async function requestPermission() {
       typeof DeviceMotionEvent.requestPermission === 'function'
     ) {
       await DeviceOrientationEvent.requestPermission()
-      resolve()
     }
+    resolve()
   })
   init_modal.open()
 }
