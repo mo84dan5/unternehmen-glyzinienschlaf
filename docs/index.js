@@ -85,6 +85,7 @@ async function main() {
     controls.update()
     spotLight.position.copy(camera.position)
     spotLight.quaternion.copy(camera.quaternion)
+    spotLight.rotation.copy(camera.rotation)
     renderer.render(scene, camera)
   }
   loop()
