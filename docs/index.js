@@ -26,7 +26,12 @@ async function main() {
 
   // ThreeJSのレンダラーを用意
   const scene = new THREE.Scene()
-  const camera = new THREE.PerspectiveCamera(75, w / h, 0.1, 1000)
+  const camera = new THREE.PerspectiveCamera(
+    75,
+    window.innerWidth / window.innerHeight,
+    0.1,
+    1000
+  )
   camera.position.set(0, 1, 0)
   scene.add(camera)
   const light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6)
@@ -36,7 +41,7 @@ async function main() {
     antialias: true,
   })
   renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(w, h)
+  renderer.setSize(window.innerWidth, window.innerHeight)
   const controls = new THREE.DeviceOrientationControls(camera, true)
   // DeviceOrientationControlsのデバイスごとのalpha値の違い吸収する
   window.addEventListener(
@@ -78,5 +83,14 @@ async function main() {
   loop()
 
   // ここから作成
+
+  function makeCube() {
+    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+    const material = new THREE.MeshToonMaterialgbug({ color: 0x00ff00 })
+    const cube = new THREE.Mesh(geometry, material)
+    cube.position.x = 1
+    return cube
+  }
+  scene.add(makeCube())
 }
 main()
