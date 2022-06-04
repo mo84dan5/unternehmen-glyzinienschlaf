@@ -81,12 +81,11 @@ async function main() {
 
   // 再生開始 (カメラ映像を投影)
   function loop() {
-    console.log(camera.position)
+    console.log(camera.quaternion)
     requestAnimationFrame(loop)
     controls.update()
     spotLight.position.copy(camera.position)
     spotLight.quaternion.copy(camera.quaternion)
-    spotLight.rotation.copy(camera.rotation)
     renderer.render(scene, camera)
   }
   loop()
