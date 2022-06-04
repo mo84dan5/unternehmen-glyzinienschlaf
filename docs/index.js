@@ -3,17 +3,23 @@ console.log('index.js: loaded')
 import Modal from './lib/modal.js'
 import SubmitModal from './lib/submit-modal.js'
 
-async function requestPermission() {
-  const init_modal = new SubmitModal('initModal')
-  init_modal.setButtonFunc(async () => {
-    if (
-      typeof DeviceMotionEvent !== 'undefined' &&
-      typeof DeviceMotionEvent.requestPermission === 'function'
-    ) {
-      await DeviceOrientationEvent.requestPermission()
-    }
+function requestPermission() {
+  return new Promise(async (resolve) => {
+    const modal = document.getElementById('initModal')
+    console.log(modal)
+    const funcButton = modal.getElementsByClassName('button')[0]
+    modal.style.display = 'block'
+    funcButton.addEventListener('click', async () => {
+      if (
+        typeof DeviceMotionEvent !== 'undefined' &&
+        typeof DeviceMotionEvent.requestPermission === 'function'
+      ) {
+        await DeviceOrientationEvent.requestPermission()
+      }
+      modal.style.display = 'none'
+      resolve()
+    })
   })
-  init_modal.open()
 }
 async function main() {
   await requestPermission()
