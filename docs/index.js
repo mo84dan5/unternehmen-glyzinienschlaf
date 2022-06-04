@@ -88,7 +88,7 @@ async function main() {
     const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
     const material = new THREE.MeshToonMaterialgbug({ color: 0x00ff00 })
     const cube = new THREE.Mesh(geometry, material)
-    cube.position.x = 1
+    // cube.position.x = 1
     return cube
   }
   scene.add(makeCube())
