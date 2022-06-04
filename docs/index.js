@@ -32,7 +32,7 @@ async function main() {
     0.1,
     1000
   )
-  camera.position.set(0, 1, 0)
+  camera.position.set(0, 1, 4)
   scene.add(camera)
   const light = new THREE.AmbientLight(0x808080)
   scene.add(light)
@@ -83,6 +83,8 @@ async function main() {
   function loop() {
     requestAnimationFrame(loop)
     controls.update()
+    spotLight.position.copy(camera.position)
+    spotLight.quaternion.copy(camera.quaternion)
     renderer.render(scene, camera)
   }
   loop()
