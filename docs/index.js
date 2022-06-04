@@ -34,8 +34,13 @@ async function main() {
   )
   camera.position.set(0, 1, 0)
   scene.add(camera)
-  const light = new THREE.HemisphereLight(0x777777, 0x000000, 0.6)
+  const light = new THREE.AmbientLight(0x808080)
   scene.add(light)
+  const spotLight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI / 4, 1, 50)
+  spotLight.position.copy(camera.position)
+  spotLight.quaternion.copy(camera.quaternion)
+  spotLight.castShadow = true
+  scene.add(spotLight)
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true,
@@ -84,13 +89,25 @@ async function main() {
 
   // ここから作成
 
+  function makefloor() {
+    const geometry = new THREE.BoxGeometry(2000, 0.1, 2000)
+    const material = new THREE.MeshToonMaterial({ color: 0x00aa00 })
+    const floor = new THREE.Mesh(geometry, material)
+    floor.receiveShadow = true
+    return floor
+  }
+  const floor = makefloor()
+  scene.add(floor)
+
   function makeCube() {
-    const geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5)
+    const geometry = new THREE.SphereGeometry(1, 32, 32)
     const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
     const cube = new THREE.Mesh(geometry, material)
-    // cube.position.x = 1
+    cube.position.y = 1
+    cube.receiveShadow = true
     return cube
   }
-  scene.add(makeCube())
+  const cube = makeCube()
+  scene.add(cube)
 }
 main()
