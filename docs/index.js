@@ -81,6 +81,7 @@ async function main() {
 
   // 再生開始 (カメラ映像を投影)
   function loop() {
+    console.log(camera.position)
     requestAnimationFrame(loop)
     controls.update()
     spotLight.position.copy(camera.position)
