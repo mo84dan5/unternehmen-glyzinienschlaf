@@ -21,6 +21,46 @@ function requestPermission() {
     })
   })
 }
+function makeObject(position, color, geometry) {
+  const material = new THREE.MeshToonMaterial({ color: color })
+  const mesh = new THREE.Mesh(geometry, material)
+  mesh.position.x = position[0]
+  mesh.position.y = position[1]
+  mesh.position.z = position[2]
+  mesh.receiveShadow = true
+  const outline = new THREE.Mesh(
+    geometry,
+    new THREE.MeshToonMaterial({ color: 0x000000 })
+  )
+  outline.material.side = THREE.BackSide
+  outline.position.copy(mesh.position)
+  outline.flipSided = true
+  outline.scale.x = 1.01
+  outline.scale.y = 1.01
+  outline.scale.z = 1.01
+  const group = new THREE.Group()
+  group.add(mesh)
+  group.add(outline)
+  return group
+}
+
+function makeTree() {
+  const obj1 = makeObject(
+    [0, 6, 0],
+    0x00ff00,
+    new THREE.SphereGeometry(4, 32, 32)
+  )
+  const obj2 = makeObject(
+    [0, 2.5, 0],
+    0xcd853f,
+    new THREE.CylinderGeometry(1, 1, 5, 32)
+  )
+  const group = new THREE.Group()
+  group.add(obj1)
+  group.add(obj2)
+  return group
+}
+
 async function main() {
   await requestPermission()
 
@@ -85,7 +125,7 @@ async function main() {
     requestAnimationFrame(loop)
     controls.update()
     spotLight.position.copy(camera.position)
-    spotLight.quaternion.copy(camera.quaternion)
+    spotLight.rotation.y = spotLight.rotation.y + 0.1
     renderer.render(scene, camera)
   }
   loop()
@@ -102,15 +142,7 @@ async function main() {
   const floor = makefloor()
   scene.add(floor)
 
-  function makeCube() {
-    const geometry = new THREE.SphereGeometry(1, 32, 32)
-    const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
-    const cube = new THREE.Mesh(geometry, material)
-    cube.position.y = 1
-    cube.receiveShadow = true
-    return cube
-  }
-  const cube = makeCube()
-  scene.add(cube)
+  const tree = makeTree()
+  scene.add(tree)
 }
 main()

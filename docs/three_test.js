@@ -1,3 +1,46 @@
+const clock = new THREE.Clock()
+const gui = new lil.GUI()
+
+function makeObject(position, color, geometry) {
+  const material = new THREE.MeshToonMaterial({ color: color })
+  const mesh = new THREE.Mesh(geometry, material)
+  mesh.position.x = position[0]
+  mesh.position.y = position[1]
+  mesh.position.z = position[2]
+  mesh.receiveShadow = true
+  const outline = new THREE.Mesh(
+    geometry,
+    new THREE.MeshToonMaterial({ color: 0x000000 })
+  )
+  outline.material.side = THREE.BackSide
+  outline.position.copy(mesh.position)
+  outline.flipSided = true
+  outline.scale.x = 1.01
+  outline.scale.y = 1.01
+  outline.scale.z = 1.01
+  const group = new THREE.Group()
+  group.add(mesh)
+  group.add(outline)
+  return group
+}
+
+function makeTree() {
+  const obj1 = makeObject(
+    [0, 6, 0],
+    0x00ff00,
+    new THREE.SphereGeometry(4, 32, 32)
+  )
+  const obj2 = makeObject(
+    [0, 2.5, 0],
+    0xcd853f,
+    new THREE.CylinderGeometry(1, 1, 5, 32)
+  )
+  const group = new THREE.Group()
+  group.add(obj1)
+  group.add(obj2)
+  return group
+}
+
 function main() {
   // ThreeJSのレンダラーを用意
   const scene = new THREE.Scene()
@@ -11,23 +54,20 @@ function main() {
   scene.add(camera)
   const light = new THREE.AmbientLight(0x808080)
   scene.add(light)
-  const spotLight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI / 4, 1, 50)
-  spotLight.position.copy(camera.position)
-  spotLight.quaternion.copy(camera.quaternion)
-  spotLight.castShadow = true
-  scene.add(spotLight)
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true,
   })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
+
+  const controls = new THREE.OrbitControls(camera, renderer.domElement)
   // DOMにThreeJSのレンダラー(描画結果の出力)を追加
   document.body.appendChild(renderer.domElement)
 
   function makefloor() {
     const geometry = new THREE.BoxGeometry(2000, 0.1, 2000)
-    const material = new THREE.MeshToonMaterial({ color: 0x00aa00 })
+    const material = new THREE.MeshToonMaterial({ color: 0xd2b48c })
     const floor = new THREE.Mesh(geometry, material)
     floor.receiveShadow = true
     return floor
@@ -35,24 +75,17 @@ function main() {
   const floor = makefloor()
   scene.add(floor)
 
-  function makeCube() {
-    const geometry = new THREE.SphereGeometry(1, 32, 32)
-    const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
-    const cube = new THREE.Mesh(geometry, material)
-    cube.position.y = 1
-    cube.receiveShadow = true
-    return cube
-  }
-  const cube = makeCube()
-  scene.add(cube)
+  const tree = makeTree()
+
+  scene.add(tree)
+  gui.add(tree.position, 'x', -2, 2)
+  gui.add(tree.position, 'y', 0, 10)
+  gui.add(tree.position, 'z', -2, 0)
 
   // 再生開始 (カメラ映像を投影)
   function loop() {
     requestAnimationFrame(loop)
-    spotLight.position.copy(camera.position)
-    spotLight.quaternion.copy(camera.quaternion)
     renderer.render(scene, camera)
-    if (cube) cube.rotation.x = cube.rotation.x + 1
   }
   loop()
 }
