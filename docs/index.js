@@ -44,6 +44,38 @@ function makeObject(position, color, geometry) {
   return group
 }
 
+function tweenSlide(obj, tgtPositon) {
+  const twAnim1 = new TWEEN.Tween(obj.position)
+    .to({ x: tgtPositon.x, z: tgtPositon.z }, 1000)
+    .easing(TWEEN.Easing.Cubic.InOut)
+    .onUpdate(() => {})
+    .onComplete(() => {})
+  const twAnim2 = new TWEEN.Tween(obj.position)
+    .to({ y: tgtPositon.y + 2 + 2 }, 500)
+    .easing(TWEEN.Easing.Cubic.In)
+    .onComplete(() => {})
+  const twAnim3 = new TWEEN.Tween(obj.position)
+    .to({ y: tgtPositon.y + 2 }, 500)
+    .easing(TWEEN.Easing.Cubic.Out)
+    .onComplete(() => {})
+
+  twAnim1.start()
+  twAnim2.chain(twAnim3)
+  twAnim2.start()
+}
+
+function movingBall(position) {
+  const geometry = new THREE.SphereGeometry(1, 32, 32)
+  const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
+  const mesh = new THREE.Mesh(geometry, material)
+  material.transparent = true
+  material.opacity = 0.5
+  mesh.addEventListener('click', () => {
+    tweenSlide(camera, mesh.position)
+  })
+  return mesh
+}
+
 function makeTree() {
   const obj1 = makeObject(
     [0, 6, 0],
@@ -76,11 +108,7 @@ async function main() {
   scene.add(camera)
   const light = new THREE.AmbientLight(0xaaaaaa)
   scene.add(light)
-  // const spotLight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI / 4, 1, 50)
-  // spotLight.position.copy(camera.position)
-  // spotLight.quaternion.copy(camera.quaternion)
-  // spotLight.castShadow = true
-  // scene.add(spotLight)
+
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true,
@@ -121,11 +149,10 @@ async function main() {
 
   // 再生開始 (カメラ映像を投影)
   function loop() {
-    console.log(camera.quaternion)
+    // console.log(camera.quaternion)
+    TWEEN.update()
     requestAnimationFrame(loop)
     controls.update()
-    // spotLight.position.copy(camera.position)
-    // spotLight.rotation.y = spotLight.rotation.y + 0.1
     renderer.render(scene, camera)
   }
   loop()
@@ -142,7 +169,12 @@ async function main() {
   const floor = makefloor()
   scene.add(floor)
 
-  const tree = makeTree()
-  scene.add(tree)
+  // const tree = makeTree()
+  // scene.add(tree)
+
+  const ball1 = movingBall([0, 0, 0])
+  const ball2 = movingBall([0, 0, 2])
+  const ball3 = movingBall([0, 0, 4])
+  scene.add(ball1, ball2, ball3)
 }
 main()
