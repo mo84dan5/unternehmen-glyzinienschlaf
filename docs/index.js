@@ -68,7 +68,7 @@ function movingBall(position, camera) {
   const geometry = new THREE.SphereGeometry(1, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
-  mesh.position.set(position)
+  mesh.position.set(...position)
   material.transparent = true
   material.opacity = 0.5
   mesh.addEventListener('click', () => {
