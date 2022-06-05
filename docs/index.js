@@ -175,6 +175,6 @@ async function main() {
   const ball1 = movingBall([0, 0, 0])
   const ball2 = movingBall([0, 0, 2])
   const ball3 = movingBall([0, 0, 4])
-  scene.add([ball1, ball2, ball3])
+  scene.add(ball1, ball2, ball3)
 }
 main()
