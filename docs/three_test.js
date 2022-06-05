@@ -38,7 +38,7 @@ function makeTree(position) {
   const group = new THREE.Group()
   group.add(obj1)
   group.add(obj2)
-  group.position.set(position)
+  group.position.set(...position)
   return group
 }
 

@@ -65,7 +65,7 @@ function tweenSlide(obj, tgtPositon) {
 }
 
 function movingBall(position, camera) {
-  const geometry = new THREE.SphereGeometry(1, 32, 32)
+  const geometry = new THREE.SphereGeometry(0.5, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(...position)
@@ -174,8 +174,8 @@ async function main() {
   // scene.add(tree)
 
   const ball1 = movingBall([0, 0, 0], camera)
-  const ball2 = movingBall([0, 0, 2], camera)
-  const ball3 = movingBall([0, 0, 4], camera)
+  const ball2 = movingBall([0, 0, 10], camera)
+  const ball3 = movingBall([0, 0, 20], camera)
   scene.add(ball1, ball2, ball3)
 }
 main()
