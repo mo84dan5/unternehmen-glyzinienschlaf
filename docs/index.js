@@ -74,13 +74,13 @@ async function main() {
   )
   camera.position.set(0, 1, 4)
   scene.add(camera)
-  const light = new THREE.AmbientLight(0x808080)
+  const light = new THREE.AmbientLight(0xaaaaaa)
   scene.add(light)
-  const spotLight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI / 4, 1, 50)
-  spotLight.position.copy(camera.position)
-  spotLight.quaternion.copy(camera.quaternion)
-  spotLight.castShadow = true
-  scene.add(spotLight)
+  // const spotLight = new THREE.SpotLight(0xffffff, 2, 100, Math.PI / 4, 1, 50)
+  // spotLight.position.copy(camera.position)
+  // spotLight.quaternion.copy(camera.quaternion)
+  // spotLight.castShadow = true
+  // scene.add(spotLight)
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true,
