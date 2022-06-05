@@ -72,7 +72,7 @@ async function main() {
     0.1,
     1000
   )
-  camera.position.set(0, 1, 4)
+  camera.position.set(0, 1.5, 6)
   scene.add(camera)
   const light = new THREE.AmbientLight(0xaaaaaa)
   scene.add(light)
