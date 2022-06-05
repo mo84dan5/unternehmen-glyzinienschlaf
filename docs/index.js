@@ -124,8 +124,8 @@ async function main() {
     console.log(camera.quaternion)
     requestAnimationFrame(loop)
     controls.update()
-    spotLight.position.copy(camera.position)
-    spotLight.rotation.y = spotLight.rotation.y + 0.1
+    // spotLight.position.copy(camera.position)
+    // spotLight.rotation.y = spotLight.rotation.y + 0.1
     renderer.render(scene, camera)
   }
   loop()
