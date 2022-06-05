@@ -64,10 +64,11 @@ function tweenSlide(obj, tgtPositon) {
   twAnim2.start()
 }
 
-function movingBall(position) {
+function movingBall(position, camera) {
   const geometry = new THREE.SphereGeometry(1, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
+  mesh.position.set(position)
   material.transparent = true
   material.opacity = 0.5
   mesh.addEventListener('click', () => {
@@ -172,9 +173,9 @@ async function main() {
   // const tree = makeTree()
   // scene.add(tree)
 
-  const ball1 = movingBall([0, 0, 0])
-  const ball2 = movingBall([0, 0, 2])
-  const ball3 = movingBall([0, 0, 4])
+  const ball1 = movingBall([0, 0, 0], camera)
+  const ball2 = movingBall([0, 0, 2], camera)
+  const ball3 = movingBall([0, 0, 4], camera)
   scene.add(ball1, ball2, ball3)
 }
 main()
