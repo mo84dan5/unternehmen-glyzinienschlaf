@@ -107,7 +107,7 @@ async function main() {
 
   let nyoronyoroCoin = 0
   const contentsPromises = []
-  const texture01_nyoro = loadTexture('img/nyoro.png')
+  const texture01_nyoro = await loadTexture('img/nyoro.png')
   contentsPromises.push(texture01_nyoro)
   await Promise.all(contentsPromises)
 
