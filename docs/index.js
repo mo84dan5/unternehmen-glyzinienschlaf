@@ -101,14 +101,14 @@ async function main() {
   let nyoronyoroCoin = 0
   const contentsPromises = []
 
-  const texture01_nyoro = new Promise((resolve, reject) =>
+  const texture01_nyoro = new Promise((resolve, reject) => {
     new THREE.TextureLoader().load(
       './img/nyoro.png',
       resolve,
       undefined,
       reject
     )
-  )
+  })
   contentsPromises.push(texture01_nyoro)
   await Promise.all(contentsPromises)
 
@@ -305,6 +305,7 @@ async function main() {
   movingBallPosFloor1st.forEach((position) => {
     movingBall(...position, scene, camera)
   })
+
   function putNyoroNyoroCoin(px, py, pz, texture) {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
