@@ -99,7 +99,6 @@ function putNyoroNyoroCoin(px, py, pz, texture, scene) {
   const material = new THREE.SpriteMaterial({
     map: texture,
     transparent: true,
-    opacity: 0.9,
     color: 0xffffff,
   })
   const mesh = new THREE.Sprite(material)
@@ -317,7 +316,7 @@ async function main() {
   movingBallPosFloor1st.forEach((position) => {
     movingBall(...position, scene, camera)
   })
-  // putNyoroNyoroCoin(0, 0, 0, texture01_nyoro, scene)
+  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro, scene)
 
   // ---- ここまで↑ ---- //
 
