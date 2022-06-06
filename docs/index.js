@@ -109,7 +109,7 @@ async function main() {
   // const contentsPromises = []
   const texture01_nyoro = await loadTexture('img/nyoro.png')
   // contentsPromises.push(texture01_nyoro)
-  await Promise.all(contentsPromises)
+  // await Promise.all(contentsPromises)
 
   // ThreeJSのレンダラーを用意
   const scene = new THREE.Scene()
