@@ -334,20 +334,20 @@ async function main() {
           .to({ y: coords.py + 2 }, 1000)
           .easing(TWEEN.Easing.Elastic.Out)
           .start()
-        // const twAnim3 = new TWEEN.Tween(mesh.material)
-        //   .to({ opacity: 0 }, 1000)
-        //   .easing(TWEEN.Easing.Elastic.Out)
-        //   .start()
-        const twAnim4 = new TWEEN.Tween(mesh.scale)
-          .to({ x: 0, y: 2 }, 1000)
-          .easing(TWEEN.Easing.Elastic.Out)
-          .start()
           .onComplete(() => {
             material.dispose()
             geometry.dispose()
             scene.remove(mesh)
             nyoronyoroCoin++
           })
+        // const twAnim3 = new TWEEN.Tween(mesh.material)
+        //   .to({ opacity: 0 }, 1000)
+        //   .easing(TWEEN.Easing.Elastic.Out)
+        //   .start()
+        // const twAnim4 = new TWEEN.Tween(mesh.scale)
+        //   .to({ x: 0, y: 2 }, 1000)
+        //   .easing(TWEEN.Easing.Elastic.Out)
+        //   .start()
       },
       { once: true }
     )
