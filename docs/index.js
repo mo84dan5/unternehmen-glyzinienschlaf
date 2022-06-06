@@ -317,7 +317,7 @@ async function main() {
   movingBallPosFloor1st.forEach((position) => {
     movingBall(...position, scene, camera)
   })
-  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro, scene)
+  // putNyoroNyoroCoin(0, 0, 0, texture01_nyoro, scene)
 
   // ---- ここまで↑ ---- //
 
