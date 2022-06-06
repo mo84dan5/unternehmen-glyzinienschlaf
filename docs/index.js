@@ -64,11 +64,11 @@ function tweenSlide(obj, tgtPositon) {
   twAnim2.start()
 }
 
-function movingBall(position, camera) {
+function movingBall(px, py, pz, camera) {
   const geometry = new THREE.SphereGeometry(0.5, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
-  mesh.position.set(...position)
+  mesh.position.set(px, py, pz)
   material.transparent = true
   material.opacity = 0.5
   mesh.addEventListener('click', () => {
@@ -170,12 +170,72 @@ async function main() {
   const floor = makefloor()
   scene.add(floor)
 
+  // ---- 1階の制作 ---- //
+  const floor1st = [
+    [90, 20, 45, -110],
+    [20, 200, 10, -200],
+    [90, 20, 45, -290],
+    [20, 60, 80, -310],
+    [60, 20, 100, -330],
+    [20, 60, 120, -310],
+    [90, 20, 155, -290],
+    [20, 60, 190, -270],
+    [60, 20, 210, -270],
+    [20, 100, 230, -230],
+    [60, 20, 210, -190],
+    [20, 120, 190, -160],
+    [90, 20, 155, -110],
+    [20, 60, 120, -130],
+    [50, 80, 135, -180],
+    [20, 40, 80, -160],
+    [50, 20, 65, -150],
+    [10, 80, 45, -180],
+    [50, 20, 65, -210],
+    [90, 20, 45, -250],
+    [90, 20, 155, -250],
+  ]
+  function makeBoxFloorPosition(
+    scaleX,
+    scaleZ,
+    positionX,
+    positionY,
+    defaultScaleY,
+    defaultPositionY,
+    color
+  ) {
+    const geometry = new THREE.BoxGeometry(scaleX, defaultScaleY, scaleZ)
+    const material = new THREE.MeshStandardMaterial({ color: color })
+    const mesh = new THREE.Mesh(geometry, material)
+    console.log(mesh.position.y)
+    mesh.position.x = positionX
+    mesh.position.y = defaultPositionY + defaultScaleY / 2
+    mesh.position.z = positionY
+    scene.add(mesh)
+  }
+  floor1st.forEach((wall) => {
+    makeBoxFloorPosition(...wall, 50, 10, 0x9cd8bf)
+  })
+  makeBoxFloorPosition(240, 240, 120, -220, 10, 0, 0x000000)
+
+  const movingBallPos = [
+    [0, 0, 0],
+    [20, 0, 0],
+    [40, 0, 0],
+    [60, 0, 0],
+    [80, 0, 0],
+    [100, 0, 0],
+    [100, 0, -20],
+    [100, 0, -40],
+    [100, 0, -60],
+    [100, 5, -80],
+  ]
+  movingBallPos.forEach((position) => {
+    movingBall(...position, camera)
+  })
+
+  // ---- ここまで↑ ---- //
+
   // const tree = makeTree()
   // scene.add(tree)
-
-  const ball1 = movingBall([0, 0, 0], camera)
-  const ball2 = movingBall([0, 0, 10], camera)
-  const ball3 = movingBall([0, 0, 20], camera)
-  scene.add(ball1, ball2, ball3)
 }
 main()
