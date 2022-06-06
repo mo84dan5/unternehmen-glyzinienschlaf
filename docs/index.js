@@ -316,7 +316,7 @@ async function main() {
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
-    mesh.scale.set(2, 2)
+    // mesh.scale.set(2, 2)
     const twAnim1 = new TWEEN.Tween(mesh.rotation)
       .to({ y: 2 * Math.PI }, 1000)
       .infinity()
@@ -333,7 +333,7 @@ async function main() {
     )
     scene.add(mesh)
   }
-  putNyoroNyoroCoin(0, 0, -10)
+  putNyoroNyoroCoin(0, 0.5, -5)
 
   // ---- ここまで↑ ---- //
 
