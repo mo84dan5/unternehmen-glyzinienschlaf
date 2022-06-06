@@ -95,8 +95,29 @@ function makeTree() {
   return group
 }
 
+function putNyoroNyoroCoin(px, py, pz, texture, scene) {
+  const material = new THREE.SpriteMaterial({ map: texture })
+  const mesh = new THREE.Sprite(material)
+  mesh.position.set(px, py, pz)
+  scene.add(mesh)
+}
+
 async function main() {
   await requestPermission()
+
+  let nyoronyoroCoin = 0
+  const contentsPromises = []
+
+  const texture01_nyoro = new Promise((resolve, reject) =>
+    new THREE.TextureLoader().load(
+      './img/nyoro.jpg',
+      resolve,
+      undefined,
+      reject
+    )
+  )
+  contentsPromises.push(texture01_nyoro)
+  await Promise.all(contentsPromises)
 
   // ThreeJSのレンダラーを用意
   const scene = new THREE.Scene()
@@ -268,8 +289,8 @@ async function main() {
     [140, 10, -230],
     [160, 10, -230],
     [170, 10, -230],
+    [210, 10, -210],
     [210, 10, -230],
-    [210, 10, -220],
     [210, 10, -250],
     [170, 10, -210],
     [170, 10, -190],
@@ -291,6 +312,7 @@ async function main() {
   movingBallPosFloor1st.forEach((position) => {
     movingBall(...position, scene, camera)
   })
+  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro, scene)
 
   // ---- ここまで↑ ---- //
 
