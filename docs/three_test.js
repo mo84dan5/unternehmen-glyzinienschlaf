@@ -246,7 +246,7 @@ async function main() {
       .repeat(Infinity)
       .easing(TWEEN.Easing.Back.InOut)
       .onUpdate(() => {
-        console.log(mesh.position.y)
+        // console.log(mesh.position.y)
         mesh.rotation.y = coords.y
       })
       .onComplete(() => {})
