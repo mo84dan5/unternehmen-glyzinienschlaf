@@ -342,6 +342,11 @@ async function main() {
           .to({ x: 0, y: 2 }, 1000)
           .easing(TWEEN.Easing.Elastic.Out)
           .start()
+          .onComplete(() => {
+            material.dispose()
+            geometry.dispose()
+            scene.remove(mesh)
+          })
       },
       { once: true }
     )
