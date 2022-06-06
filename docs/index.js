@@ -316,12 +316,14 @@ async function main() {
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
-    mesh.rotation.y = Math.PI / 4
-    // mesh.scale.set(2, 2)
-    const twAnim = new TWEEN.Tween(mesh.rotation)
-      .to({ y: Math.PI }, 1000)
+    const coords = { y: 0 }
+    const twAnim = new TWEEN.Tween(coords)
+      .to({ y: 2 * Math.PI }, 2000)
       .repeat(Infinity)
       .easing(TWEEN.Easing.Back.InOut)
+      .onUpdate(() => {
+        mesh.rotation.y = coords.y
+      })
       .onComplete(() => {})
       .start()
     mesh.addEventListener(

@@ -240,7 +240,24 @@ async function main() {
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
-    mesh.addEventListener('click', () => {}, { once: true })
+    const coords = { y: 0 }
+    const twAnim = new TWEEN.Tween(coords)
+      .to({ y: 2 * Math.PI }, 2000)
+      .repeat(Infinity)
+      .easing(TWEEN.Easing.Back.InOut)
+      .onUpdate(() => {
+        console.log(mesh.position.y)
+        mesh.rotation.y = coords.y
+      })
+      .onComplete(() => {})
+      .start()
+    mesh.addEventListener(
+      'click',
+      () => {
+        twAnim.stop()
+      },
+      { once: true }
+    )
     scene.add(mesh)
   }
   putNyoroNyoroCoin(0, 0, 0, texture01_nyoro)
