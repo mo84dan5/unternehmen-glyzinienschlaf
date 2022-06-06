@@ -317,17 +317,16 @@ async function main() {
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
     // mesh.scale.set(2, 2)
-    const twAnim1 = new TWEEN.Tween(mesh.rotation)
-      .to({ y: 2 * Math.PI }, 1000)
+    const twAnim = new TWEEN.Tween(mesh.rotation)
+      .to({ y: Math.PI }, 1000)
       .repeat(Infinity)
       .easing(TWEEN.Easing.Back.InOut)
-      .onUpdate(() => {})
       .onComplete(() => {})
       .start()
     mesh.addEventListener(
       'click',
       () => {
-        twAnim1.stop()
+        twAnim.stop()
       },
       { once: true }
     )
