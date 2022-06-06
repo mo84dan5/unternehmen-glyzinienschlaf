@@ -316,6 +316,13 @@ async function main() {
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
+    const twAnim1 = new TWEEN.Tween(mesh.rotation)
+      .to({ y: 2 * Math.PI }, 1000)
+      .infinity()
+      .easing(TWEEN.Easing.Cubic.InOut)
+      .onUpdate(() => {})
+      .onComplete(() => {})
+    twAnim1.start()
     mesh.addEventListener('click', () => {}, { once: true })
     scene.add(mesh)
   }
