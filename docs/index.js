@@ -323,8 +323,14 @@ async function main() {
       .easing(TWEEN.Easing.Cubic.InOut)
       .onUpdate(() => {})
       .onComplete(() => {})
-    twAnim1.start()
-    mesh.addEventListener('click', () => {}, { once: true })
+      .start()
+    mesh.addEventListener(
+      'click',
+      () => {
+        twAnim1.stop()
+      },
+      { once: true }
+    )
     scene.add(mesh)
   }
   putNyoroNyoroCoin(0, 0, -10)
