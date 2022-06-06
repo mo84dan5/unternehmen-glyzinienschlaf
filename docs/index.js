@@ -311,8 +311,6 @@ async function main() {
     const material = new THREE.MeshBasicMaterial({
       transparent: true,
       side: THREE.DoubleSide,
-      map: new THREE.TextureLoader().load('./img/nyoro.png'),
-      alphaTest: 0.5,
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
