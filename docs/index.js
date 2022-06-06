@@ -65,7 +65,7 @@ function tweenSlide(obj, tgtPositon) {
 }
 
 function movingBall(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(0.5, 32, 32)
+  const geometry = new THREE.SphereGeometry(3, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -226,7 +226,7 @@ async function main() {
   })
   makeBoxFloorPosition(240, 240, 120, -220, 10, 0, 0x000000)
 
-  const movingBallPos = [
+  const movingBallPosStart = [
     [0, 0, 0],
     [20, 0, 0],
     [40, 0, 0],
@@ -238,7 +238,7 @@ async function main() {
     [100, 0, -60],
     [100, 5, -80],
   ]
-  movingBallPos.forEach((position) => {
+  movingBallPosStart.forEach((position) => {
     movingBall(...position, scene, camera)
   })
 
