@@ -110,7 +110,7 @@ async function main() {
 
   const texture01_nyoro = new Promise((resolve, reject) =>
     new THREE.TextureLoader().load(
-      './img/nyoro.jpg',
+      './img/nyoro.png',
       resolve,
       undefined,
       reject
