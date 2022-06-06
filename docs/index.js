@@ -316,6 +316,7 @@ async function main() {
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
+    mesh.rotation.y = Math.PI / 4
     // mesh.scale.set(2, 2)
     const twAnim = new TWEEN.Tween(mesh.rotation)
       .to({ y: Math.PI }, 1000)
