@@ -51,7 +51,7 @@ function tweenSlide(obj, tgtPositon) {
     .onUpdate(() => {})
     .onComplete(() => {})
   const twAnim2 = new TWEEN.Tween(obj.position)
-    .to({ y: tgtPositon.y + 2 + 2 }, 500)
+    .to({ y: tgtPositon.y + 5 + 2 }, 500)
     .easing(TWEEN.Easing.Cubic.In)
     .onComplete(() => {})
   const twAnim3 = new TWEEN.Tween(obj.position)
