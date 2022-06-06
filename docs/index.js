@@ -339,6 +339,8 @@ async function main() {
             geometry.dispose()
             scene.remove(mesh)
             nyoronyoroCoin++
+
+            console.log(nyoronyoroCoin)
           })
         // const twAnim3 = new TWEEN.Tween(mesh.material)
         //   .to({ opacity: 0 }, 1000)
