@@ -335,10 +335,10 @@ async function main() {
           .easing(TWEEN.Easing.Elastic.Out)
           .start()
           .onComplete(() => {
+            nyoronyoroCoin++
             material.dispose()
             geometry.dispose()
             scene.remove(mesh)
-            nyoronyoroCoin++
 
             console.log(nyoronyoroCoin)
           })
