@@ -95,20 +95,19 @@ function makeTree() {
   return group
 }
 
+function loadTexture(url) {
+  return new Promise((resolve, reject) => {
+    const loader = new THREE.TextureLoader()
+    loader.load(url, resolve, undefined, reject)
+  })
+}
+
 async function main() {
   await requestPermission()
 
   let nyoronyoroCoin = 0
   const contentsPromises = []
-
-  const texture01_nyoro = new Promise((resolve, reject) => {
-    new THREE.TextureLoader().load(
-      './img/nyoro.png',
-      resolve,
-      undefined,
-      reject
-    )
-  })
+  const texture01_nyoro = loadTexture('img/nyoro.png')
   contentsPromises.push(texture01_nyoro)
   await Promise.all(contentsPromises)
 
@@ -308,16 +307,19 @@ async function main() {
 
   function putNyoroNyoroCoin(px, py, pz) {
     const geometry = new THREE.PlaneGeometry(1, 1)
-    const material = new THREE.MeshBasicMaterial({
-      transparent: true,
+    const material = new THREE.MeshStandardMaterial({
+      // color: 0x000000,
+      // transparent: true,
+      map: texture01_nyoro,
       side: THREE.DoubleSide,
+      alphaTest: 1,
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
     mesh.addEventListener('click', () => {}, { once: true })
     scene.add(mesh)
   }
-  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro)
+  putNyoroNyoroCoin(0, 0, 0)
 
   // ---- ここまで↑ ---- //
 

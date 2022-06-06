@@ -42,7 +42,17 @@ function makeTree(position) {
   return group
 }
 
-function main() {
+function loadTexture(url) {
+  return new Promise((resolve, reject) => {
+    const loader = new THREE.TextureLoader()
+    loader.load(url, resolve, undefined, reject)
+  })
+}
+async function main() {
+  const contentsPromises = []
+  const texture01_nyoro = await loadTexture('img/nyoro.png')
+
+  await Promise.all(contentsPromises)
   // ThreeJSのレンダラーを用意
   const scene = new THREE.Scene()
   const camera = new THREE.PerspectiveCamera(
@@ -219,7 +229,21 @@ function main() {
   // gui.add(tree.position, 'x', -2, 2)
   // gui.add(tree.position, 'y', 0, 10)
   // gui.add(tree.position, 'z', -2, 0)
-
+  function putNyoroNyoroCoin(px, py, pz, texture) {
+    const geometry = new THREE.PlaneGeometry(1, 1)
+    const material = new THREE.MeshStandardMaterial({
+      // color: 0x000000,
+      // transparent: true,
+      map: texture01_nyoro,
+      side: THREE.DoubleSide,
+      alphaTest: 1,
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(px, py, pz)
+    mesh.addEventListener('click', () => {}, { once: true })
+    scene.add(mesh)
+  }
+  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro)
   // ---- 施策 ---- //
   // ---- ここまで↑ ---- //
 
