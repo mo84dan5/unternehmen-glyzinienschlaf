@@ -64,7 +64,7 @@ function tweenSlide(obj, tgtPositon) {
   twAnim2.start()
 }
 
-function movingBall(px, py, pz, camera) {
+function movingBall(px, py, pz, scene, camera) {
   const geometry = new THREE.SphereGeometry(0.5, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
@@ -239,7 +239,7 @@ async function main() {
     [100, 5, -80],
   ]
   movingBallPos.forEach((position) => {
-    movingBall(...position, camera)
+    movingBall(...position, scene, camera)
   })
 
   // ---- ここまで↑ ---- //
