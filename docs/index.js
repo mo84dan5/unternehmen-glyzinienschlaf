@@ -96,7 +96,12 @@ function makeTree() {
 }
 
 function putNyoroNyoroCoin(px, py, pz, texture, scene) {
-  const material = new THREE.SpriteMaterial({ map: texture })
+  const material = new THREE.SpriteMaterial({
+    map: texture,
+    transparent: true,
+    opacity: 0.9,
+    color: 0xffffff,
+  })
   const mesh = new THREE.Sprite(material)
   mesh.position.set(px, py, pz)
   scene.add(mesh)
