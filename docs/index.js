@@ -106,9 +106,9 @@ async function main() {
   await requestPermission()
 
   let nyoronyoroCoin = 0
-  const contentsPromises = []
+  // const contentsPromises = []
   const texture01_nyoro = await loadTexture('img/nyoro.png')
-  contentsPromises.push(texture01_nyoro)
+  // contentsPromises.push(texture01_nyoro)
   await Promise.all(contentsPromises)
 
   // ThreeJSのレンダラーを用意
