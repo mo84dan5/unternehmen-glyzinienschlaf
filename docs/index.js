@@ -306,12 +306,12 @@ async function main() {
     movingBall(...position, scene, camera)
   })
 
-  function putNyoroNyoroCoin(px, py, pz, texture) {
+  function putNyoroNyoroCoin(px, py, pz) {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshBasicMaterial({
       transparent: true,
       side: THREE.DoubleSide,
-      map: texture,
+      map: new THREE.TextureLoader().load('./img/nyoro.png'),
       alphaTest: 0.5,
     })
     const mesh = new THREE.Mesh(geometry, material)
