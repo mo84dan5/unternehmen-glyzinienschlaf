@@ -95,20 +95,6 @@ function makeTree() {
   return group
 }
 
-function putNyoroNyoroCoin(px, py, pz, texture, scene) {
-  const geometry = new THREE.PlaneGeometry(1, 1)
-  const material = new THREE.MeshBasicMaterial({
-    transparent: true,
-    side: THREE.DoubleSide,
-    map: texture,
-    alphaTest: 0.5,
-  })
-  const mesh = new THREE.Mesh(geometry, material)
-  mesh.position.set(px, py, pz)
-  mesh.addEventListener('click', () => {}, { once: true })
-  scene.add(mesh)
-}
-
 async function main() {
   await requestPermission()
 
@@ -319,7 +305,20 @@ async function main() {
   movingBallPosFloor1st.forEach((position) => {
     movingBall(...position, scene, camera)
   })
-  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro, scene)
+  function putNyoroNyoroCoin(px, py, pz, texture) {
+    const geometry = new THREE.PlaneGeometry(1, 1)
+    const material = new THREE.MeshBasicMaterial({
+      transparent: true,
+      side: THREE.DoubleSide,
+      map: texture,
+      alphaTest: 0.5,
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.set(px, py, pz)
+    mesh.addEventListener('click', () => {}, { once: true })
+    scene.add(mesh)
+  }
+  putNyoroNyoroCoin(0, 0, 0, texture01_nyoro)
 
   // ---- ここまで↑ ---- //
 
