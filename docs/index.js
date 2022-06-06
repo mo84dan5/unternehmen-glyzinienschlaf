@@ -74,6 +74,7 @@ function movingBall(px, py, pz, camera) {
   mesh.addEventListener('click', () => {
     tweenSlide(camera, mesh.position)
   })
+  scene.add(mesh)
   return mesh
 }
 
@@ -107,8 +108,16 @@ async function main() {
   )
   camera.position.set(0, 1.5, 6)
   scene.add(camera)
-  const light = new THREE.AmbientLight(0xaaaaaa)
+  const light = new THREE.AmbientLight(0x808080)
   scene.add(light)
+  const dlight = new THREE.DirectionalLight(0xffffff, 0.3)
+  const t = Date.now() / 500
+  const r = 10.0
+  const lx = r * Math.cos(t)
+  const lz = r * Math.sin(t)
+  const ly = 6.0 + 5.0 * Math.sin(t / 3.0)
+  dlight.position.set(lx, ly, lz)
+  scene.add(dlight)
 
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
