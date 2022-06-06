@@ -316,31 +316,29 @@ async function main() {
     })
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(px, py, pz)
-    const coords = { y: 0 }
+    const coords = { ry: 0, py: py }
     const twAnim = new TWEEN.Tween(coords)
-      .to({ y: 2 * Math.PI }, 2000)
+      .to({ ry: 2 * Math.PI }, 2000)
       .repeat(Infinity)
       .easing(TWEEN.Easing.Back.InOut)
       .onUpdate(() => {
-        mesh.rotation.y = coords.y
+        mesh.rotation.y = coords.ry
       })
       .onComplete(() => {})
       .start()
     mesh.addEventListener(
       'click',
       () => {
-        coords['py'] = mesh.position
         const twAnim2 = new TWEEN.Tween(mesh.position)
           .to({ y: coords.py + 2 }, 1000)
           .easing(TWEEN.Easing.Elastic.Out)
           .start()
           .onComplete(() => {
             nyoronyoroCoin++
+            console.log(nyoronyoroCoin)
             material.dispose()
             geometry.dispose()
             scene.remove(mesh)
-
-            console.log(nyoronyoroCoin)
           })
         // const twAnim3 = new TWEEN.Tween(mesh.material)
         //   .to({ opacity: 0 }, 1000)
