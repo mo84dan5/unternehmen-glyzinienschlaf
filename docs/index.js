@@ -734,7 +734,7 @@ async function main() {
     [190, 10, -230, 6, 'quiz-1st-floor-06', 'FJK'],
     [150, 10, -130, 7, 'quiz-1st-floor-07', 'ノワールカッツェ'],
   ]
-  quiz.forEach((q = setQuiz(...q)))
+  quiz.forEach((q) => setQuiz(...q))
   // ---- ここまで↑ ---- //
 
   // const tree = makeTree()
