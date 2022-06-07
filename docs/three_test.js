@@ -1,5 +1,6 @@
 const clock = new THREE.Clock()
 const gui = new lil.GUI()
+import { Sky } from './lib/threejs/sky.js'
 
 function makeObject(position, color, geometry) {
   const material = new THREE.MeshToonMaterial({ color: color })
@@ -73,12 +74,45 @@ async function main() {
   const ly = 6.0 + 5.0 * Math.sin(t / 3.0)
   dlight.position.set(lx, ly, lz)
   scene.add(dlight)
+
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true,
   })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
+
+  // ---- Skyの調整 ---- //
+  const sky = new Sky()
+  sky.scale.setScalar(450000)
+  scene.add(sky)
+
+  const sun = new THREE.Vector3()
+
+  const effectController = {
+    turbidity: 10,
+    rayleigh: 3,
+    mieCoefficient: 0.005,
+    mieDirectionalG: 0.7,
+    elevation: 2,
+    azimuth: 180,
+    exposure: renderer.toneMappingExposure,
+  }
+
+  const uniforms = sky.material.uniforms
+  uniforms['turbidity'].value = effectController.turbidity
+  uniforms['rayleigh'].value = effectController.rayleigh
+  uniforms['mieCoefficient'].value = effectController.mieCoefficient
+  uniforms['mieDirectionalG'].value = effectController.mieDirectionalG
+
+  const phi = THREE.MathUtils.degToRad(90 - effectController.elevation)
+  const theta = THREE.MathUtils.degToRad(effectController.azimuth)
+
+  sun.setFromSphericalCoords(1, phi, theta)
+
+  uniforms['sunPosition'].value.copy(sun)
+
+  // ---- ここまで ---- //
 
   // 画面のクリックされた場所の先に描画されているオブジェクトのクリックイベントが発火するように設定
   renderer.domElement.addEventListener('click', (event) => {

@@ -2,6 +2,8 @@ console.log('index.js: loaded')
 
 import Modal from './lib/modal.js'
 import SubmitModal from './lib/submit-modal.js'
+import SysMesModal from './lib/sys-mes-modal.js'
+import { Sky } from './lib/threejs/sky.js'
 
 function requestPermission() {
   return new Promise(async (resolve) => {
@@ -105,6 +107,18 @@ function loadTexture(url) {
 async function main() {
   await requestPermission()
 
+  const smm = new SysMesModal()
+  // const smm2 = new SysMesModal()
+  smm.set_message(['テストー', 'test'])
+  smm.setButtonFunc(() => {
+    smm.set_message(['2個目'])
+    smm.setButtonFunc(() => {
+      smm.close()
+    })
+    smm.open()
+  })
+  smm.open()
+
   let nyoronyoroCoin = 0
   // const contentsPromises = []
   const texture01_nyoro = await loadTexture('img/nyoro.png')
@@ -132,12 +146,45 @@ async function main() {
   dlight.position.set(lx, ly, lz)
   scene.add(dlight)
 
+  // ---- Skyの調整 ---- //
+  const sky = new Sky()
+  sky.scale.setScalar(450000)
+  scene.add(sky)
+
+  const sun = new THREE.Vector3()
+
+  const effectController = {
+    turbidity: 10,
+    rayleigh: 3,
+    mieCoefficient: 0.005,
+    mieDirectionalG: 0.7,
+    elevation: 2,
+    azimuth: 180,
+    exposure: renderer.toneMappingExposure,
+  }
+
+  const uniforms = sky.material.uniforms
+  uniforms['turbidity'].value = effectController.turbidity
+  uniforms['rayleigh'].value = effectController.rayleigh
+  uniforms['mieCoefficient'].value = effectController.mieCoefficient
+  uniforms['mieDirectionalG'].value = effectController.mieDirectionalG
+
+  const phi = THREE.MathUtils.degToRad(90 - effectController.elevation)
+  const theta = THREE.MathUtils.degToRad(effectController.azimuth)
+
+  sun.setFromSphericalCoords(1, phi, theta)
+
+  uniforms['sunPosition'].value.copy(sun)
+
+  // ---- ここまで ---- //
+
   const renderer = new THREE.WebGLRenderer({
     preserveDrawingBuffer: true,
     antialias: true,
   })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.toneMappingExposure = effectController.exposure
   const controls = new THREE.DeviceOrientationControls(camera, true)
   // DeviceOrientationControlsのデバイスごとのalpha値の違い吸収する
   window.addEventListener(
@@ -244,6 +291,8 @@ async function main() {
   })
   makeBoxFloorPosition(240, 240, 120, -220, 10, 0, 0x000000)
 
+  // ---- ここまで↑ ---- //
+  // ---- 移動球の制作 ---- //
   const movingBallPosStart = [
     [0, 0, 0],
     [20, 0, 0],
@@ -304,7 +353,8 @@ async function main() {
   movingBallPosFloor1st.forEach((position) => {
     movingBall(...position, scene, camera)
   })
-
+  // ---- ここまで↑ ---- //
+  // ---- にょろにょろコインの制作 ---- //
   function putNyoroNyoroCoin(px, py, pz) {
     const geometry = new THREE.PlaneGeometry(1, 1)
     const material = new THREE.MeshStandardMaterial({
