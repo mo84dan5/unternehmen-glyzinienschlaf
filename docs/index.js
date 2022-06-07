@@ -645,7 +645,7 @@ async function main() {
         const ssm = new SysMesModal()
         ssm.set_message = [message, 'にょろにょろコインを集めてくるにょろ']
         ssm.setButtonFunc = () => {}
-        ssm.open
+        ssm.open()
       } else {
         const modal = new Modal(id)
         modal.setButtonFunc(
