@@ -666,6 +666,7 @@ async function main() {
             modal.close()
           }
         )
+        modal.open()
       }
     })
   }
