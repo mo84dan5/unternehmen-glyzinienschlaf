@@ -661,7 +661,7 @@ async function main() {
       }
     })
   }
-  setQuiz(100, 10, 110, 1, 'quiz-1st-floor-01', '0607')
+  setQuiz(100, 10, -110, 1, 'quiz-1st-floor-01', '0607')
   // ---- ここまで↑ ---- //
 
   // const tree = makeTree()
