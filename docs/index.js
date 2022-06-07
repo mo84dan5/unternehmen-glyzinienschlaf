@@ -763,6 +763,59 @@ async function main() {
   quiz.forEach((q) => setQuiz(...q))
   // ---- ここまで↑ ---- //
 
+  // ---- 殿堂入り処理 ---- //
+  function makeDendoObject(px, py, pz) {
+    const geometry = new THREE.BoxGeometry(5, 5, 5)
+    const material = new THREE.MeshStandardMaterial({
+      color: 0xffd700,
+      roughness: 0.5,
+    })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.x = px
+    mesh.position.y = py + 5 / 2
+    mesh.position.z = pz
+    scene.add(mesh)
+    mesh.addEventListener('click', () => {
+      // const smm2 = new SysMesModal()
+      const smm = new SysMesModal()
+      smm.set_message(['ゲームクリアです！おめでとうございます！'])
+      smm.setButtonFunc(() => {
+        smm.set_message(['このメッセージを読まれる時が来るとは…'])
+        smm.setButtonFunc(() => {
+          smm.set_message([
+            'この世界は実はまだ未完成で、今後改善されていく可能性があります。',
+          ])
+          smm.setButtonFunc(() => {
+            smm.set_message([
+              '今回は最も簡易的な実装となっており、クリア後の要素などがまだありません',
+            ])
+            smm.setButtonFunc(() => {
+              smm.set_message([
+                'なので、今回はGoogleFormに殿堂入りとして名前を刻んでいただき、祝福と変えさせていただきたいと思います。',
+              ])
+              smm.setButtonFunc(() => {
+                smm.set_message(['ThankYouForYorPlaying!!'])
+                smm.setButtonFunc(() => {
+                  smm.set_message([
+                    'ボタンを押したらGoogleFormが別タブで開きます',
+                  ])
+                  smm.setButtonFunc(() => {
+                    smm.close()
+                    smm.open()
+                    window.open('https://forms.gle/nt81VP6bcmEoTS5c9', '_blank')
+                  })
+                })
+              })
+            })
+          })
+        })
+        smm.open()
+      })
+    })
+  }
+  makeDendoObject(0, 0.5, 0)
+  // ---- ここまで↑ ---- //
+
   // const tree = makeTree()
   // scene.add(tree)
 }
