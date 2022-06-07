@@ -143,11 +143,32 @@ async function main() {
 
   const smm = new SysMesModal()
   // const smm2 = new SysMesModal()
-  smm.set_message(['テストー', 'test'])
+  smm.set_message(['リア様誕生日記念、にょろにょろ団のいたずら'])
   smm.setButtonFunc(() => {
-    smm.set_message(['2個目'])
+    smm.set_message(['リア様3Dクイズの世界にようこそ'])
     smm.setButtonFunc(() => {
-      smm.close()
+      smm.set_message([
+        'この世界の操作は極めて簡単！半透明の色のついた球体をタップして場所を移動し、',
+      ])
+      smm.setButtonFunc(() => {
+        smm.set_message([
+          '白いクイズパネル(手抜き)のパネルを破壊してゴールを目指そう！',
+        ])
+        smm.setButtonFunc(() => {
+          smm.set_message([
+            'クイズパネルに挑戦するにはこの世界に散らばっている',
+          ])
+          smm.setButtonFunc(() => {
+            smm.set_message(['にょろにょろを拾う必要があるぞ'])
+            smm.setButtonFunc(() => {
+              smm.set_message([
+                'と、いうことで探索とクイズの冒険にれっつらごー',
+              ])
+              smm.setButtonFunc(() => {})
+            })
+          })
+        })
+      })
     })
     smm.open()
   })
