@@ -74,7 +74,7 @@ function tweenSlide(
 }
 
 function movingBall(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(4, 32, 32)
+  const geometry = new THREE.SphereGeometry(3, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -87,7 +87,7 @@ function movingBall(px, py, pz, scene, camera) {
   return mesh
 }
 function movingBallBlue(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(4, 32, 32)
+  const geometry = new THREE.SphereGeometry(3, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x0000ff })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -101,7 +101,7 @@ function movingBallBlue(px, py, pz, scene, camera) {
 }
 
 function movingBallRed(px, py, pz, tpx, tpy, tpz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(4, 32, 32)
+  const geometry = new THREE.SphereGeometry(3, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0xff0000 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -658,6 +658,27 @@ async function main() {
     [105, 10.5, 310],
     [206, 10.5, 250],
     [203, 10.5, 210],
+
+    [85, 110.5, 145],
+    [55, 110.5, 125],
+    [175, 110.5, 205],
+    [5, 110.5, 265],
+    [55, 110.5, 315],
+    [130, 110.5, 265],
+
+    [24, 210.5, 160],
+    [24, 210.5, 270],
+    [24, 210.5, 175],
+    [105, 210.5, 310],
+    [206, 210.5, 250],
+    [203, 210.5, 210],
+
+    [65, 310.5, 185],
+    [95, 310.5, 145],
+    [115, 310.5, 215],
+    [75, 310.5, 125],
+    [125, 310.5, 225],
+    [135, 310.5, 315],
   ]
   ncs.forEach((nc) => putNyoroNyoroCoin(...nc))
 
