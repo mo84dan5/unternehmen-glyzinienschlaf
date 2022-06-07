@@ -643,8 +643,8 @@ async function main() {
         console.log('aaaaaa')
         const message = 'あと' + (nyoronyoroCoin - nc) + '枚'
         const ssm = new SysMesModal()
-        ssm.set_message = [message, 'にょろにょろコインを集めてくるにょろ']
-        ssm.setButtonFunc = () => {}
+        ssm.set_message([message, 'にょろにょろコインを集めてくるにょろ'])
+        ssm.setButtonFunc(() => {})
         ssm.open()
       } else {
         const modal = new Modal(id)
