@@ -159,7 +159,9 @@ async function main() {
             'クイズパネルに挑戦するにはこの世界に散らばっている',
           ])
           smm.setButtonFunc(() => {
-            smm.set_message(['にょろにょろコイン(仮想通貨ではない)を拾う必要があるぞ'])
+            smm.set_message([
+              'にょろにょろコイン(仮想通貨ではない)を拾う必要があるぞ',
+            ])
             smm.setButtonFunc(() => {
               smm.set_message([
                 'と、いうことで探索とクイズの冒険にれっつらごー',
@@ -648,7 +650,16 @@ async function main() {
     )
     scene.add(mesh)
   }
-  putNyoroNyoroCoin(0, 0.5, -5)
+  const ncs = [
+    [0, 0.5, -5],
+    [24, 10.5, 160],
+    [24, 10.5, 270],
+    [24, 10.5, 175],
+    [105, 10.5, 310],
+    [206, 10.5, 250],
+    [203, 10.5, 210],
+  ]
+  ncs.forEach((nc) => putNyoroNyoroCoin(...nc))
 
   // ---- ここまで↑ ---- //
   // ---- 問題文の制御 ---- //
