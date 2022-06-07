@@ -352,7 +352,7 @@ async function main() {
   putNyoroNyoroCoin(0, 0, 0, texture01_nyoro)
   // ---- 施策 ---- //
   // ---- ここまで↑ ---- //
-
+  makeBoxFloorPosition(20, 20, 100, -110, 20, 10, 0xffffff)
   // 再生開始 (カメラ映像を投影)
   function loop() {
     requestAnimationFrame(loop)

@@ -74,7 +74,7 @@ function tweenSlide(
 }
 
 function movingBall(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(3, 32, 32)
+  const geometry = new THREE.SphereGeometry(2, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -87,7 +87,7 @@ function movingBall(px, py, pz, scene, camera) {
   return mesh
 }
 function movingBallBlue(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(3, 32, 32)
+  const geometry = new THREE.SphereGeometry(2, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x0000ff })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -101,7 +101,7 @@ function movingBallBlue(px, py, pz, scene, camera) {
 }
 
 function movingBallRed(px, py, pz, tpx, tpy, tpz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(3, 32, 32)
+  const geometry = new THREE.SphereGeometry(2, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0xff0000 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -376,6 +376,7 @@ async function main() {
     mesh.position.y = defaultPositionY + defaultScaleY / 2
     mesh.position.z = positionY
     scene.add(mesh)
+    return mesh
   }
   floor1st.forEach((wall) => {
     makeBoxFloorPosition(...wall, 50, 10, 0x9cd8bf)
@@ -571,7 +572,7 @@ async function main() {
   movingBallPosFloor4th.forEach((position) => {
     movingBall(...position, scene, camera)
   })
-  movingBallBlue(...[100, 10, -100], scene, camera)
+  // movingBallBlue(...[100, 10, -100], scene, camera)
   movingBallRed(...[130, 10, -130], ...[170, 110, -150], scene, camera)
   movingBallRed(...[170, 110, -150], ...[130, 10, -130], scene, camera)
   movingBallRed(...[170, 110, -270], ...[50, 210, -170], scene, camera)
@@ -626,6 +627,41 @@ async function main() {
   }
   putNyoroNyoroCoin(0, 0.5, -5)
 
+  // ---- ここまで↑ ---- //
+  // ---- 問題文の制御 ---- //
+  function setQuiz(px, py, pz, nc, id, answer) {
+    const obj = makeBoxFloorPosition(20, 20, px, pz, 10, 10, 0xffffff)
+    obj.addEventListener('click', () => {
+      if (nyoronyoroCoin < 1) {
+        const message = 'あと' + (nyoronyoroCoin - nc) + '枚'
+        const ssm = new SysMesModal()
+        ssm.set_message = [message, 'にょろにょろコインを集めてくるにょろ']
+        ssm.setButtonFunc = () => {}
+        ssm.open
+      } else {
+        const modal = new Modal(id)
+        modal.setButtonFunc(
+          answer,
+          () => {
+            const twAnim = new TWEEN.Tween(obj.scale)
+              .to({ x: 0, y: 40, z: 0 }, 2000)
+              .easing(TWEEN.Easing.Elastic.Out)
+              .onComplete(() => {
+                material.dispose()
+                geometry.dispose()
+                scene.remove(obj)
+                movingBallBlue(px, py, pz, scene, camera)
+              })
+              .start()
+          },
+          () => {
+            modal.close()
+          }
+        )
+      }
+    })
+  }
+  setQuiz(100, 10, 110, 1, 'quiz-1st-floor-01', '0607')
   // ---- ここまで↑ ---- //
 
   // const tree = makeTree()
