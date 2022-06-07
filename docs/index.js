@@ -633,6 +633,7 @@ async function main() {
     const obj = makeBoxFloorPosition(20, 20, px, pz, 10, 10, 0xffffff)
     obj.addEventListener('click', () => {
       if (nyoronyoroCoin < 1) {
+        console.log('aaaaaa')
         const message = 'あと' + (nyoronyoroCoin - nc) + '枚'
         const ssm = new SysMesModal()
         ssm.set_message = [message, 'にょろにょろコインを集めてくるにょろ']
