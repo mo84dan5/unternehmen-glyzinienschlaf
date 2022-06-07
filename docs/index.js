@@ -146,6 +146,14 @@ async function main() {
   dlight.position.set(lx, ly, lz)
   scene.add(dlight)
 
+  const renderer = new THREE.WebGLRenderer({
+    preserveDrawingBuffer: true,
+    antialias: true,
+  })
+  renderer.setPixelRatio(window.devicePixelRatio)
+  renderer.setSize(window.innerWidth, window.innerHeight)
+  renderer.toneMappingExposure = effectController.exposure
+
   // ---- Skyの調整 ---- //
   const sky = new Sky()
   sky.scale.setScalar(450000)
@@ -178,13 +186,6 @@ async function main() {
 
   // ---- ここまで ---- //
 
-  const renderer = new THREE.WebGLRenderer({
-    preserveDrawingBuffer: true,
-    antialias: true,
-  })
-  renderer.setPixelRatio(window.devicePixelRatio)
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.toneMappingExposure = effectController.exposure
   const controls = new THREE.DeviceOrientationControls(camera, true)
   // DeviceOrientationControlsのデバイスごとのalpha値の違い吸収する
   window.addEventListener(
