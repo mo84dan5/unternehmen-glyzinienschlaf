@@ -572,6 +572,10 @@ async function main() {
   movingBallRed(...[100, 10, 100], scene, camera)
   movingBallRed(...[130, 10, 130], ...[170, 110, 150], scene, camera)
   movingBallRed(...[170, 110, 150], ...[130, 10, 130], scene, camera)
+  movingBallRed(...[170, 110, 270], ...[50, 210, 170], scene, camera)
+  movingBallRed(...[50, 210, 170], ...[170, 110, 270], scene, camera)
+  movingBallRed(...[100, 210, 90], ...[50, 310, 310], scene, camera)
+  movingBallRed(...[50, 310, 310], ...[100, 210, 90], scene, camera)
   // ---- ここまで↑ ---- //
   // ---- にょろにょろコインの制作 ---- //
   function putNyoroNyoroCoin(px, py, pz) {
