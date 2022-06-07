@@ -652,12 +652,12 @@ async function main() {
           answer,
           () => {
             const twAnim = new TWEEN.Tween(mesh.scale)
-              .to({ x: 0, y: 40, z: 0 }, 2000)
+              .to({ x: 0, z: 0 }, 2000)
               .easing(TWEEN.Easing.Elastic.Out)
               .onComplete(() => {
                 material.dispose()
                 geometry.dispose()
-                scene.remove(obj)
+                scene.remove(mesh)
                 movingBallBlue(px, py, pz, scene, camera)
               })
               .start()
