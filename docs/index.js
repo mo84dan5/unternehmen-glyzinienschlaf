@@ -152,7 +152,6 @@ async function main() {
   })
   renderer.setPixelRatio(window.devicePixelRatio)
   renderer.setSize(window.innerWidth, window.innerHeight)
-  renderer.toneMappingExposure = effectController.exposure
 
   // ---- Skyの調整 ---- //
   const sky = new Sky()
@@ -183,6 +182,8 @@ async function main() {
   sun.setFromSphericalCoords(1, phi, theta)
 
   uniforms['sunPosition'].value.copy(sun)
+
+  renderer.toneMappingExposure = effectController.exposure
 
   // ---- ここまで ---- //
 
