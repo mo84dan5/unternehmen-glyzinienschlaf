@@ -79,7 +79,7 @@ function movingBall(px, py, pz, scene, camera) {
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
   material.transparent = true
-  material.opacity = 0.2
+  material.opacity = 0.4
   mesh.addEventListener('click', () => {
     tweenSlide(camera, mesh.position)
   })
@@ -92,7 +92,7 @@ function movingBallBlue(px, py, pz, scene, camera) {
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
   material.transparent = true
-  material.opacity = 0.2
+  material.opacity = 0.4
   mesh.addEventListener('click', () => {
     tweenSlide(camera, mesh.position)
   })
@@ -106,7 +106,7 @@ function movingBallRed(px, py, pz, tpx, tpy, tpz, scene, camera) {
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
   material.transparent = true
-  material.opacity = 0.2
+  material.opacity = 0.4
   mesh.addEventListener('click', () => {
     tweenSlide(camera, mesh.position, 1000, { x: tpx, y: tpy, z: tpz })
   })
