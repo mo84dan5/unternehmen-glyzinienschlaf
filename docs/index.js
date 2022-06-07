@@ -392,6 +392,7 @@ async function main() {
   makeBoxFloorPosition(240, 240, 120, -220, 10, 0, 0x000000)
   makeBoxFloorPosition(240, 240, 120, -220, 10, 100, 0x000000)
   makeBoxFloorPosition(240, 240, 120, -220, 10, 200, 0x000000)
+  makeBoxFloorPosition(80, 40, 100, -90, 10, 200, 0x000000)
   makeBoxFloorPosition(240, 240, 120, -220, 10, 300, 0x000000)
 
   // ---- ここまで↑ ---- //
