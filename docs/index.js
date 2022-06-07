@@ -74,7 +74,7 @@ function tweenSlide(
 }
 
 function movingBall(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(2, 32, 32)
+  const geometry = new THREE.SphereGeometry(1, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x00ff00 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -87,7 +87,7 @@ function movingBall(px, py, pz, scene, camera) {
   return mesh
 }
 function movingBallBlue(px, py, pz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(2, 32, 32)
+  const geometry = new THREE.SphereGeometry(1, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0x0000ff })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
@@ -101,7 +101,7 @@ function movingBallBlue(px, py, pz, scene, camera) {
 }
 
 function movingBallRed(px, py, pz, tpx, tpy, tpz, scene, camera) {
-  const geometry = new THREE.SphereGeometry(2, 32, 32)
+  const geometry = new THREE.SphereGeometry(1, 32, 32)
   const material = new THREE.MeshToonMaterial({ color: 0xff0000 })
   const mesh = new THREE.Mesh(geometry, material)
   mesh.position.set(px, py, pz)
