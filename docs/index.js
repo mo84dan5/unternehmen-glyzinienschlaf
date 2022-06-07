@@ -704,7 +704,8 @@ async function main() {
       }
     })
   }
-  setQuiz(100, 10, -110, 1, 'quiz-1st-floor-01', '0607')
+  const quiz = [[100, 10, -110, 1, 'quiz-1st-floor-01', '0607']]
+  quiz.forEach((q = setQuiz(...q)))
   // ---- ここまで↑ ---- //
 
   // const tree = makeTree()
