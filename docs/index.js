@@ -641,7 +641,7 @@ async function main() {
     mesh.addEventListener('click', () => {
       if (nyoronyoroCoin < 1) {
         console.log('aaaaaa')
-        const message = 'あと' + (nyoronyoroCoin - nc) + '枚'
+        const message = 'あと' + (nc - nyoronyoroCoin) + '枚'
         const ssm = new SysMesModal()
         ssm.set_message([message, 'にょろにょろコインを集めてくるにょろ'])
         ssm.setButtonFunc(() => {})
