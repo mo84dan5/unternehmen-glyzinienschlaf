@@ -569,8 +569,9 @@ async function main() {
   movingBallPosFloor4th.forEach((position) => {
     movingBall(...position, scene, camera)
   })
-
-  
+  movingBallRed(...[100, 10, 100], scene, camera)
+  movingBallRed(...[130, 10, 130], ...[170, 110, 150], scene, camera)
+  movingBallRed(...[170, 110, 150], ...[130, 10, 130], scene, camera)
   // ---- ここまで↑ ---- //
   // ---- にょろにょろコインの制作 ---- //
   function putNyoroNyoroCoin(px, py, pz) {
