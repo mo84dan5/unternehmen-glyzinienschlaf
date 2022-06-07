@@ -630,8 +630,15 @@ async function main() {
   // ---- ここまで↑ ---- //
   // ---- 問題文の制御 ---- //
   function setQuiz(px, py, pz, nc, id, answer) {
-    const obj = makeBoxFloorPosition(20, 20, px, pz, 10, 10, 0xffffff)
-    obj.addEventListener('click', () => {
+    // const obj = makeBoxFloorPosition(20, 20, px, pz, 10, 10, 0xffffff)
+    const geometry = new THREE.BoxGeometry(20, 20, 20)
+    const material = new THREE.MeshStandardMaterial({ color: 0xffffff })
+    const mesh = new THREE.Mesh(geometry, material)
+    mesh.position.x = px
+    mesh.position.y = py + 20 / 2
+    mesh.position.z = pz
+    scene.add(mesh)
+    mesh.addEventListener('click', () => {
       if (nyoronyoroCoin < 1) {
         console.log('aaaaaa')
         const message = 'あと' + (nyoronyoroCoin - nc) + '枚'
@@ -644,7 +651,7 @@ async function main() {
         modal.setButtonFunc(
           answer,
           () => {
-            const twAnim = new TWEEN.Tween(obj.scale)
+            const twAnim = new TWEEN.Tween(mesh.scale)
               .to({ x: 0, y: 40, z: 0 }, 2000)
               .easing(TWEEN.Easing.Elastic.Out)
               .onComplete(() => {
