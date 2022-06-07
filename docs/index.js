@@ -380,18 +380,18 @@ async function main() {
     makeBoxFloorPosition(...wall, 50, 10, 0x9cd8bf)
   })
   floor2nd.forEach((wall) => {
-    makeBoxFloorPosition(...wall, 50, 10, 0xd3d89c)
+    makeBoxFloorPosition(...wall, 50, 110, 0xd3d89c)
   })
   floor3rd.forEach((wall) => {
-    makeBoxFloorPosition(...wall, 50, 10, 0xd89cb5)
+    makeBoxFloorPosition(...wall, 50, 210, 0xd89cb5)
   })
   floor4th.forEach((wall) => {
-    makeBoxFloorPosition(...wall, 50, 10, 0xa09bd8)
+    makeBoxFloorPosition(...wall, 50, 310, 0xa09bd8)
   })
   makeBoxFloorPosition(240, 240, 120, -220, 10, 0, 0x000000)
-  makeBoxFloorPosition(240, 240, 120, -220, 10, 10, 0x000000)
-  makeBoxFloorPosition(240, 240, 120, -220, 10, 20, 0x000000)
-  makeBoxFloorPosition(240, 240, 120, -220, 10, 30, 0x000000)
+  makeBoxFloorPosition(240, 240, 120, -220, 10, 100, 0x000000)
+  makeBoxFloorPosition(240, 240, 120, -220, 10, 200, 0x000000)
+  makeBoxFloorPosition(240, 240, 120, -220, 10, 300, 0x000000)
 
   // ---- ここまで↑ ---- //
   // ---- 移動球の制作 ---- //
