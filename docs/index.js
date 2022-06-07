@@ -159,12 +159,14 @@ async function main() {
             'クイズパネルに挑戦するにはこの世界に散らばっている',
           ])
           smm.setButtonFunc(() => {
-            smm.set_message(['にょろにょろを拾う必要があるぞ'])
+            smm.set_message(['にょろにょろコイン(仮想通貨ではない)を拾う必要があるぞ'])
             smm.setButtonFunc(() => {
               smm.set_message([
                 'と、いうことで探索とクイズの冒険にれっつらごー',
               ])
-              smm.setButtonFunc(() => {})
+              smm.setButtonFunc(() => {
+                smm.close()
+              })
             })
           })
         })
