@@ -695,7 +695,7 @@ async function main() {
     mesh.position.z = pz
     scene.add(mesh)
     mesh.addEventListener('click', () => {
-      if (nyoronyoroCoin < 1) {
+      if (nyoronyoroCoin < nc) {
         console.log('aaaaaa')
         const message = 'あと' + (nc - nyoronyoroCoin) + '枚'
         const ssm = new SysMesModal()
@@ -735,12 +735,12 @@ async function main() {
     [190, 10, -230, 6, 'quiz-1st-floor-06', 'FJK'],
     [150, 10, -130, 8, 'quiz-1st-floor-07', 'ノワールカッツェ'],
 
-    [70, 110, 170, 9, 'quiz-2nd-floor-01', '銀'],
-    [50, 110, 150, 9, 'quiz-2nd-floor-02', '召喚の儀'],
-    [70, 110, 230, 10, 'quiz-2nd-floor-03', 'ワンダラー'],
-    [30, 110, 270, 11, 'quiz-2nd-floor-04', 'みんなのカーリング'],
-    [50, 110, 290, 12, 'quiz-2nd-floor-05', 'ウインク'],
-    [70, 110, 270, 13, 'quiz-2nd-floor-06', 'こんばんは'],
+    [70, 110, -170, 9, 'quiz-2nd-floor-01', '銀'],
+    [50, 110, -150, 9, 'quiz-2nd-floor-02', '召喚の儀'],
+    [70, 110, -230, 10, 'quiz-2nd-floor-03', 'ワンダラー'],
+    [30, 110, -270, 11, 'quiz-2nd-floor-04', 'みんなのカーリング'],
+    [50, 110, -290, 12, 'quiz-2nd-floor-05', 'ウインク'],
+    [70, 110, -270, 13, 'quiz-2nd-floor-06', 'こんばんは'],
 
     [80, 210, -190, 14, 'quiz-3rd-floor-01', '下僕'],
     [120, 210, -270, 15, 'quiz-3rd-floor-02', 'エレメントマーク'],
