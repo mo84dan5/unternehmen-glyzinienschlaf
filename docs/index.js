@@ -609,7 +609,7 @@ async function main() {
   // ---- ここまで↑ ---- //
   // ---- にょろにょろコインの制作 ---- //
   function putNyoroNyoroCoin(px, py, pz) {
-    const geometry = new THREE.PlaneGeometry(1, 1)
+    const geometry = new THREE.PlaneGeometry(1.5, 1.5)
     const material = new THREE.MeshStandardMaterial({
       // color: 0x000000,
       // transparent: true,
