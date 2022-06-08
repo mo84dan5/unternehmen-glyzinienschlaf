@@ -618,7 +618,7 @@ async function main() {
       alphaTest: 1,
     })
     const mesh = new THREE.Mesh(geometry, material)
-    mesh.position.set(px, py + 1.2, pz)
+    mesh.position.set(px, py + 1.5 / 2 + 0.5, pz)
     const coords = { ry: 0, py: py }
     const twAnim = new TWEEN.Tween(coords)
       .to({ ry: 2 * Math.PI }, 2000)
