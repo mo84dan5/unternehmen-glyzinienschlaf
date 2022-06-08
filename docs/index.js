@@ -631,7 +631,7 @@ async function main() {
       'click',
       () => {
         const twAnim2 = new TWEEN.Tween(mesh.position)
-          .to({ y: coords.py + 2 }, 1000)
+          .to({ y: coords.py + 10 }, 1000)
           .easing(TWEEN.Easing.Elastic.InOut)
           .start()
           .onComplete(() => {
@@ -643,7 +643,7 @@ async function main() {
           })
         const twAnim3 = new TWEEN.Tween(mesh.scale)
           .to({ x: 0, y: 2 }, 1000)
-          .easing(TWEEN.Easing.Elastic.Out)
+          .easing(TWEEN.Easing.Back.In)
           .start()
       },
       { once: true }
