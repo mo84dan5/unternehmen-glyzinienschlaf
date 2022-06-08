@@ -783,7 +783,7 @@ async function main() {
       window.open('https://forms.gle/nt81VP6bcmEoTS5c9', '_blank')
     })
   }
-  makeDendoObject(130, 310.5, 130)
+  makeDendoObject(130, 310.5, -130)
   // ---- ここまで↑ ---- //
 
   // const tree = makeTree()
