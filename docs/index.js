@@ -178,7 +178,7 @@ async function main() {
   })
   smm.open()
 
-  let nyoronyoroCoin = 0
+  let nyoronyoroCoin = 18
   // const contentsPromises = []
   const texture01_nyoro = await loadTexture('img/nyoro.png')
   // contentsPromises.push(texture01_nyoro)
