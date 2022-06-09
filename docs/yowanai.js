@@ -145,10 +145,10 @@ async function main() {
   // const smm2 = new SysMesModal()
   smm.set_message(['リア様誕生日記念、にょろにょろ団のいたずら'])
   smm.setButtonFunc(() => {
-    smm.set_message(['リア様3Dクイズの世界にようこそ'])
+    smm.set_message(['リア様3Dクイズの世界(酔わない努力版)にようこそ'])
     smm.setButtonFunc(() => {
       smm.set_message([
-        'この世界の操作は極めて簡単！半透明の色のついた球体をタップして場所を移動し、',
+        'この世界の操作は極めて簡単！スワイプで見回し、半透明の色のついた球体をタップして場所を移動！',
       ])
       smm.setButtonFunc(() => {
         smm.set_message([
