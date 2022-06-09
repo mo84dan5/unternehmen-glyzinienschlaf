@@ -263,11 +263,11 @@ async function main() {
   const mc = new Hammer(renderer.domElement)
   mc.on('panleft panright', function (ev) {
     if (ev.type === 'panleft') {
-      camera.rotation.y = camera.rotation.y - 0.05
+      camera.rotation.y = camera.rotation.y - 0.03
       console.log(ev.type)
     }
     if (ev.type === 'panright') {
-      camera.rotation.y = camera.rotation.y + 0.05
+      camera.rotation.y = camera.rotation.y + 0.03
       console.log(ev.type)
     }
     if (ev.type === 'panup') {
