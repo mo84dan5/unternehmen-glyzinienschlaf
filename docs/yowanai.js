@@ -1,4 +1,5 @@
 console.log('index.js: loaded')
+iNoBounce.enable()
 
 import Modal from './lib/modal.js'
 import SubmitModal from './lib/submit-modal.js'
