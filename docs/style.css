@@ -1,6 +1,6 @@
 body {
   font-family: serif;
-  font-size: 16px;
+  font-size: 15px;
   line-height: 1.6;
   color: #fff;
 }
@@ -50,7 +50,7 @@ body {
 
 .modal-header {
   border-radius: 5px 5px 0px 0px;
-  background: lightblue;
+  background: #a09bd8;
   display: flex;
   justify-content: space-between;
 }
@@ -71,7 +71,7 @@ body {
 }
 
 .modal-body > .button {
-  background: lightblue;
+  background: #a09bd8;
   color: #fff;
   padding: 0 1em;
   border: 0;
